@@ -1,12 +1,12 @@
 import AccountType from "./AccountType";
 import MaritialStatus from "./MaritialStatus";
 import Location from "./Location";
-
-export default class user{
+// 
+export default class User{
     private username:string='';
     private password:any;
-    private firstName:string='';
-    private lastName:string='';
+    private firstName:string|null=null;
+    private lastName:string|null=null;
     private email:string='';
     private phoneNumber:number|null=null;
     private profilePhoto:string|null=null;
@@ -18,5 +18,24 @@ export default class user{
     private dob:Date|null=null;
     private joined:Date=new Date();
     private location:Location|null=null;
-
+// 
 }
+// 
+// import AccountType from "./AccountType";
+// import MaritialStatus from "./MaritialStatus";
+// import Location from "./Location";
+
+// export default interface User {
+    // username: string,
+    // password: string,
+    // firstName?: string,
+    // lastName?: string,
+    // email: string,
+    // profilePhoto?: string,
+    // headerImage?: string,
+    // biography?: string,
+    // dateOfBirth?: Date,
+    // accountType?: AccountType,
+    // maritalStatus?: MaritialStatus,
+    // location?: Location,
+// };
