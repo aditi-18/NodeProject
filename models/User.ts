@@ -1,7 +1,6 @@
 import AccountType from "./AccountType";
 import MaritialStatus from "./MaritialStatus";
-import Location from "./Location";
-// 
+import Location from "./Location"; 
 export default class User{
     private username:string='';
     private password:any;
@@ -17,25 +16,5 @@ export default class User{
     private interests:string|null=null;
     private dob:Date|null=null;
     private joined:Date=new Date();
-    private location:Location|null=null;
-// 
+    private location:Location|null=null; 
 }
-// 
-// import AccountType from "./AccountType";
-// import MaritialStatus from "./MaritialStatus";
-// import Location from "./Location";
-
-// export default interface User {
-    // username: string,
-    // password: string,
-    // firstName?: string,
-    // lastName?: string,
-    // email: string,
-    // profilePhoto?: string,
-    // headerImage?: string,
-    // biography?: string,
-    // dateOfBirth?: Date,
-    // accountType?: AccountType,
-    // maritalStatus?: MaritialStatus,
-    // location?: Location,
-// };
