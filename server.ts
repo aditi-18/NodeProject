@@ -1,14 +1,4 @@
-// import express, {Request, Response} from 'express';
-// const app = express();
-// 
-// app.get('/hello', (req: Request, res: Response) =>
-    // res.send('Hello World!'));
-// 
-// app.get('/add/:a/:b', (req: Request, res: Response) =>
-    // res.send(req.params.a + req.params.b));
-// 
-// const PORT = 4000;
-// app.listen(process.env.PORT || PORT);
+
 /**
  * @file Server file
  */
@@ -20,15 +10,27 @@ import TuitController from './controller/TuitController';
  // connect to the database
  const DB_USERNAME = process.env.DB_USERNAME;
  const DB_PASSWORD = process.env.DB_PASSWORD;
- const connectionString = `mongodb+srv://aditi1896:<Aditishri>@cluster0.mfzry.mongodb.net/test`;
+ const connectionString = "mongodb+srv://aditishri:cryptostock@cryptostock.clokm.mongodb.net/trial?retryWrites=true&w=majority";
  mongoose.connect(connectionString);
+
+ mongoose.connection.on("error", function(error) {
+
+    console.log(error)
+    
+    })
+    
+    mongoose.connection.on("open", function() {
+    
+    console.log("Connected to MongoDB database.")
+    
+    })
  
  // create RESTful Web service API
  const app = express();
  app.use(express.json());
  
  app.get('/', (req: Request, res: Response) =>
-     res.send('Welcome!'));
+     res.send('Welcome!!!!!!!!!!!!!!!!'));
  
  app.get('/add/:a/:b', (req: Request, res: Response) =>
      res.send(req.params.a + req.params.b));
@@ -37,5 +39,5 @@ import TuitController from './controller/TuitController';
  const tuitController = TuitController.getInstance(app);
 
  
- const PORT = 4000;
+ const PORT = 3000;
  app.listen(process.env.PORT || PORT);

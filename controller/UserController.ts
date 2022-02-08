@@ -1,38 +1,61 @@
 import {Request, Response} from "express";
-import { Express } from "express-serve-static-core";
+import { Express, ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 import UserDao from "../daos/UserDao";
-import UserControllerI from "../interfaces/UserController";
+import UserControllerI from "../interfaces/UserControllerI";
 import User from "../models/User";
 
 export default class UserController implements UserControllerI {
-   static getInstance(app: Express) {
-       throw new Error('Method not implemented.');
-   }
-   app: Express;
-   userDao: UserDao;
-   constructor(app: Express, userDao: UserDao) {
-       this.app = app;
-       this.userDao = userDao;
-       this.app.get('/users', this.findAllUsers);
-       this.app.get('/users/:userid', this.findUserById);
-       this.app.post('/users', this.createUser);
-       this.app.delete('/users/:userid', this.deleteUser);
-       this.app.put('/users/:userid', this.updateUser);
-   }
+private static userDao: UserDao = UserDao.getInstance();
+private static userController: UserController | null = null;
+public static getInstance = (app: Express): UserController => {
+    if(UserController.userController === null) {
+        UserController.userController = new UserController();
+        
+        //for testing without postman. Not RESTful
+        // app.get("/api/users/create", UserController.userController.createUser);
+        // app.get("/api/users/:uid/delete", UserController.userController.deleteUser);
+        // app.get("/api/users/delete", UserController.userController.deleteUser);
+        // 
+        //RESTful User Web service API
+        // app.get("/api/users", UserController.userController.findAllUsers);
+        // app.get("/api/users/:uid", UserController.userController.findUserById);
+        // app.post("/api/users", UserController.userController.createUser);
+        // app.put("/api/users/:uid", UserController.userController.updateUser);
+        // app.delete("/api/users/:uid", UserController.userController.deleteUser);
+        // app.delete("/api/users", UserController.userController.deleteUser);
+        app.get('/users', UserController.userController.findAllUsers);
+
+app.get('/users/:userid', UserController.userController.findUserById);
+
+app.post('/users', UserController.userController.createUser);
+
+app.delete('/users/:userid', UserController.userController.deleteUser);
+
+app.put('/users/:userid', UserController.userController.updateUser);
+    }
+    return UserController.userController;
+}
+
+private constructor() {}
+    deleteAllUsers(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>): void {
+        throw new Error("Method not implemented.");
+    }
+
    findAllUsers = (req: Request, res: Response) =>
-       this.userDao.findAllUsers()
+       UserController.userDao.findAllUsers()
            .then(User => res.json(User));
    findUserById = (req: Request, res: Response) =>
-       this.userDao.findUserById(req.params.userid)
+       UserController.userDao.findUserById(req.params.userid)
            .then(User => res.json(User));
    createUser = (req: Request, res: Response) =>
-       this.userDao.createUser(req.body)
+       UserController.userDao.createUser(req.body)
            .then(User => res.json(User));
    deleteUser = (req: Request, res: Response) =>
-       this.userDao.deleteUser(req.params.userid)
+       UserController.userDao.deleteUser(req.params.userid)
            .then(status => res.json(status));
    updateUser = (req: Request, res: Response) =>
-       this.userDao.updateUser(req.params.userid, req.body)
+       UserController.userDao.updateUser(req.params.userid, req.body)
            .then(status => res.json(status));
 }
 

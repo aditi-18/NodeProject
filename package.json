@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
+    "mongoose": "^6.2.0",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
@@ -20,5 +21,13 @@
     "@types/node": "^16.11.21",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aditi-18/NodeProject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aditi-18/NodeProject/issues"
+  },
+  "homepage": "https://github.com/aditi-18/NodeProject#readme"
 }
