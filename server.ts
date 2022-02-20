@@ -6,6 +6,7 @@
 import UserController from './controller/UserController';
 import TuitController from './controller/TuitController';
  import mongoose from "mongoose";
+import LikeController from './controller/LikeController';
  
  // connect to the database
  const DB_USERNAME = process.env.DB_USERNAME;
@@ -37,6 +38,8 @@ import TuitController from './controller/TuitController';
      
  const userController = UserController.getInstance(app);
  const tuitController = TuitController.getInstance(app);
+ const likeController = LikeController.getInstance(app);
+ 
 
  
  const PORT = 3000;
