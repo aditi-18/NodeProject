@@ -9,7 +9,7 @@ import TuitController from './controller/TuitController';
 import LikeController from './controller/LikeController';
 import FollowController from './controller/FollowController';
 import MessageController from './controller/MessageController';
-import BookmarkController from './controller/bookmarkController';
+import BookmarkController from './controller/BookmarkController';
  
  // connect to the database
  const DB_USERNAME = process.env.DB_USERNAME;
@@ -44,7 +44,7 @@ import BookmarkController from './controller/bookmarkController';
  const likeController = LikeController.getInstance(app);
  const followController = FollowController.getInstance(app);
  const msgcontroller = MessageController.getInstance(app);
-const bookmarkController=BookmarkController.getInstance(app);
+ const bookmarkController=BookmarkController.getInstance(app);
 
  const PORT = 3000;
  app.listen(process.env.PORT || PORT);
