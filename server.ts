@@ -7,6 +7,9 @@ import UserController from './controller/UserController';
 import TuitController from './controller/TuitController';
  import mongoose from "mongoose";
 import LikeController from './controller/LikeController';
+import FollowController from './controller/FollowController';
+import MessageController from './controller/MessageController';
+import BookmarkController from './controller/bookmarkController';
  
  // connect to the database
  const DB_USERNAME = process.env.DB_USERNAME;
@@ -39,8 +42,9 @@ import LikeController from './controller/LikeController';
  const userController = UserController.getInstance(app);
  const tuitController = TuitController.getInstance(app);
  const likeController = LikeController.getInstance(app);
- 
+ const followController = FollowController.getInstance(app);
+ const msgcontroller = MessageController.getInstance(app);
+const bookmarkController=BookmarkController.getInstance(app);
 
- 
  const PORT = 3000;
  app.listen(process.env.PORT || PORT);
