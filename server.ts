@@ -11,6 +11,7 @@ import FollowController from './controller/FollowController';
 import MessageController from './controller/MessageController';
 import BookmarkController from './controller/BookmarkController';
  
+var cors = require('cors')
  // connect to the database
  const DB_USERNAME = process.env.DB_USERNAME;
  const DB_PASSWORD = process.env.DB_PASSWORD;
@@ -32,6 +33,7 @@ import BookmarkController from './controller/BookmarkController';
  // create RESTful Web service API
  const app = express();
  app.use(express.json());
+ app.use(cors());
  
  app.get('/', (req: Request, res: Response) =>
      res.send('hello worldddd'));
