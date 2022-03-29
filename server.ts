@@ -81,7 +81,7 @@
  const DB_NAME = "myFirstDatabase";
  const DB_QUERY = "retryWrites=true&w=majority";
  // const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;// connect to the database
- const connectionString = `${PROTOCOL}://${DB_USERNAME}:${DB_PASSWORD}@${HOST}/${DB_NAME}?${DB_QUERY}`;// connect to the database
+ const connectionString = "mongodb+srv://aditishri:cryptostock@cryptostock.clokm.mongodb.net/trial?retryWrites=true&w=majority";
  mongoose.connect(connectionString);
  
  const app = express();
