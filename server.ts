@@ -87,7 +87,7 @@
  const app = express();
  app.use(cors({
      credentials: true,
-     origin: 'https://sad-ride-0c5758.netlify.app/'
+     origin: 'https://localhost:3000'
  }));
  
  const SECRET = 'process.env.SECRET';
@@ -100,7 +100,7 @@
      }
  }
  
- if (process.env.ENVIRONMENT === 'PRODUCTION') {
+ if (process.env.ENVIRONMENT === 'DEV') {
      app.set('trust proxy', 1) // trust first proxy
      sess.cookie.secure = true // serve secure cookies
  }
