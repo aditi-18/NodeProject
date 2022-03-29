@@ -87,7 +87,7 @@
  const app = express();
  app.use(cors({
      credentials: true,
-     origin: 'http://localhost:3000'
+     origin: 'https://sad-ride-0c5758.netlify.app/'
  }));
  
  const SECRET = 'process.env.SECRET';
