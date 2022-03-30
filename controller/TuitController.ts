@@ -65,9 +65,21 @@ export default class TuitController implements TuitControllerI {
      * @param {Response} res Represents response to client, including the
      * body formatted as JSON arrays containing the tuit objects
      */
-    findAllTuitsByUser = (req: Request, res: Response) =>
-        TuitController.tuitDao.findAllTuitsByUser(req.params.uid)
-            .then((tuits: Tuit[]) => res.json(tuits));
+    // findAllTuitsByUser = (req: Request, res: Response) =>
+        // TuitController.tuitDao.findAllTuitsByUser(req.params.uid)
+            // .then((tuits: Tuit[]) => res.json(tuits));
+
+            findAllTuitsByUser = (req, res) => {
+                let userId = req.params.uid === "me"
+                          && req.session['profile'] ?
+                          req.session['profile']._id :
+                          req.params.uid;
+              
+                TuitController.tuitDao
+                  .findAllTuitsByUser(userId)
+                    .then((tuits) => res.json(tuits));
+              }
+              
 
     /**
      * @param {Request} req Represents request from client, including path
@@ -87,10 +99,21 @@ export default class TuitController implements TuitControllerI {
      * body formatted as JSON containing the new tuit that was inserted in the
      * database
      */
-    createTuitByUser = (req: Request, res: Response) =>
-        TuitController.tuitDao.createTuitByUser(req.params.uid, req.body)
-            .then((tuit: Tuit) => res.json(tuit));
+    // createTuitByUser = (req: Request, res: Response) =>
+        // TuitController.tuitDao.createTuitByUser(req.params.uid, req.body)
+            // .then((tuit: Tuit) => res.json(tuit));
 
+            createTuitByUser = (req, res) => {
+                let userId = req.params.uid === "me"
+                          && req.session['profile'] ?
+                          req.session['profile']._id :
+                          req.params.uid;
+              
+                TuitController.tuitDao///check
+                  .createTuitByUser(userId, req.body)
+                    .then((tuit) => res.json(tuit));
+              }
+              
     /**
      * @param {Request} req Represents request from client, including path
      * parameter tid identifying the primary key of the tuit to be modified
