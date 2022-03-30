@@ -26,7 +26,7 @@ import FollowController from './controller/FollowController';
  const app = express();
  app.use(cors({
     credentials: true,
-    origin: ['https://localhost:3000','https://preeminent-axolotl-9218d0.netlify.app/']
+    origin: ['https://localhost:3000','https://preeminent-axolotl-9218d0.netlify.app']
 }));
 
  mongoose.connect(connectionString);
@@ -42,7 +42,7 @@ import FollowController from './controller/FollowController';
      }
  }
  
- if (process.env.ENVIRONMENT === 'DEV') {
+ if (process.env.ENVIRONMENT === 'PRODUCTION') {
      app.set('trust proxy', 1) // trust first proxy
      sess.cookie.secure = true // serve secure cookies
  }
