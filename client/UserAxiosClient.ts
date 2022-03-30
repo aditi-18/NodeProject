@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import User from "../models/User";
 // axios.defaults.baseURL = 'http://localhost:4000/api';
-axios.defaults.baseURL = 'https://a4final.herokuapp.com/';
+axios.defaults.baseURL = 'https://a4final.herokuapp.com/api';
 
 const findAllUsers = async () =>
     await axios.get('/users');

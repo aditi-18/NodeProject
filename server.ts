@@ -68,6 +68,11 @@
  import UserController from "./controller/UserController";
  import TuitController from "./controller/TuitController";
  import LikeController from "./controller/LikeController";
+ import BookMarkController from "./controller/BookMarkController"
+import FollowController from './controller/FollowController';
+// import MessageController from './controller/MessageController';
+// import AuthenticationController from "./controller/AuthenticationController";
+
  import mongoose from "mongoose";
 // import GroupController from "./controllers/GroupController";
  const cors = require("cors");
@@ -87,7 +92,7 @@
  const app = express();
  app.use(cors({
      credentials: true,
-     origin: 'https://localhost:3000'
+     origin: ['https://localhost:3000']
  }));
  
  const SECRET = 'process.env.SECRET';
@@ -100,7 +105,7 @@
      }
  }
  
- if (process.env.ENVIRONMENT === 'DEV') {
+ if (process.env.ENVIRONMENT === 'PRODUCTION') {
      app.set('trust proxy', 1) // trust first proxy
      sess.cookie.secure = true // serve secure cookies
  }
@@ -118,6 +123,10 @@
  const userController = UserController.getInstance(app);
  const tuitController = TuitController.getInstance(app);
  const likesController = LikeController.getInstance(app);
+ const bookmarkController = BookMarkController.getInstance(app);
+const followController = FollowController.getInstance(app);
+// const messageController = MessageController.getInstance(app);
+// AuthenticationController(app);
  /**
   * Start a server listening at port 4000 locally
   * but use environment variable PORT on Heroku if available.
