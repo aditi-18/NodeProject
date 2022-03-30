@@ -68,7 +68,7 @@
  import UserController from "./controller/UserController";
  import TuitController from "./controller/TuitController";
  import LikeController from "./controller/LikeController";
- import BookMarkController from "./controller/BookMarkController"
+ //import BookMarkController from "./controller/BookMarkController"
 import FollowController from './controller/FollowController';
 // import MessageController from './controller/MessageController';
 // import AuthenticationController from "./controller/AuthenticationController";
@@ -123,7 +123,7 @@ import FollowController from './controller/FollowController';
  const userController = UserController.getInstance(app);
  const tuitController = TuitController.getInstance(app);
  const likesController = LikeController.getInstance(app);
- const bookmarkController = BookMarkController.getInstance(app);
+ //const bookmarkController = BookMarkController.getInstance(app);
 const followController = FollowController.getInstance(app);
 // const messageController = MessageController.getInstance(app);
 // AuthenticationController(app);
