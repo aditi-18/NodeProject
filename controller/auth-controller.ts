@@ -7,6 +7,42 @@ const AuthenticationController = (app: Express) => {
   
   const userDao: UserDao = UserDao.getInstance();
 
+  const login = async (req: Request, res: Response) => {
+
+    const user = req.body;
+    
+    const username = user.username;
+    
+    const password = user.password;
+    
+    console.log(password)
+    
+    const existingUser = await userDao
+    
+    .findUserByUsername(username);
+    
+    const match = await bcrypt.compare(password, existingUser.password);
+    
+    
+    
+    if (match) {
+    
+    existingUser.password = '*****';
+    
+    // @ts-ignore
+    
+    req.session['profile'] = existingUser;
+    
+    res.json(existingUser);
+    
+    } else {
+    
+    res.sendStatus(403);
+    
+    }
+    
+    }
+
   const signup = async (req, res) => {
     const newUser = req.body;
     const password = newUser.password;
@@ -44,6 +80,7 @@ const logout = (req, res) => {
   
 app.post("/api/auth/signup", signup);
 app.post("/api/auth/profile", profile);
+app.post("/api/auth/login", login);
 app.post("/api/auth/logout", logout);
 
 }
