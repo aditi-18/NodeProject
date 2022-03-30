@@ -9,6 +9,7 @@ import FollowController from './controller/FollowController';
 // import AuthenticationController from "./controller/AuthenticationController";
 
  import mongoose from "mongoose";
+import AuthenticationController from './controller/auth-controller';
 // import GroupController from "./controllers/GroupController";
  const cors = require("cors");
  const session = require("express-session");
@@ -63,7 +64,7 @@ import FollowController from './controller/FollowController';
  //const bookmarkController = BookMarkController.getInstance(app);
 const followController = FollowController.getInstance(app);
 // const messageController = MessageController.getInstance(app);
-// AuthenticationController(app);
+ AuthenticationController(app);
  /**
   * Start a server listening at port 4000 locally
   * but use environment variable PORT on Heroku if available.
