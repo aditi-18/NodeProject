@@ -6,8 +6,6 @@
  //import BookMarkController from "./controller/BookMarkController"
 import FollowController from './controller/FollowController';
 // import MessageController from './controller/MessageController';
-// import AuthenticationController from "./controller/AuthenticationController";
-
  import mongoose from "mongoose";
 import AuthenticationController from './controller/auth-controller';
 // import GroupController from "./controllers/GroupController";
