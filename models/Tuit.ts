@@ -3,6 +3,7 @@
  */
 
 import User from "./User";
+import Stats from "./Stats";
 
 /**
  * @typedef Tuit Represents tuit.
@@ -14,4 +15,9 @@ export default interface Tuit {
     tuit: string,
     postedBy: User,
     postedOn?: Date,
+    image?: String,
+    youtube?: String,
+    avatarLogo?: String,
+    imageOverlay?: String,
+    stats: Stats
 };
