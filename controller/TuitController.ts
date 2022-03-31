@@ -68,18 +68,15 @@ export default class TuitController implements TuitControllerI {
     // findAllTuitsByUser = (req: Request, res: Response) =>
         // TuitController.tuitDao.findAllTuitsByUser(req.params.uid)
             // .then((tuits: Tuit[]) => res.json(tuits));
-
-            findAllTuitsByUser = (req, res) => {
-                let userId = req.params.uid === "me"
-                          && req.session['profile'] ?
-                          req.session['profile']._id :
-                          req.params.uid;
-              
-                TuitController.tuitDao
-                  .findAllTuitsByUser(userId)
-                    .then((tuits) => res.json(tuits));
-              }
-              
+            
+            findAllTuitsByUser = (req: Request, res: Response) => {
+                // @ts-ignore
+                let userId = req.params.uid === "me" && req.session['profile'] ?
+                    // @ts-ignore
+                    req.session['profile']._id : req.params.uid;
+                TuitController.tuitDao.findAllTuitsByUser(userId)
+                    .then((tuits: Tuit[]) => res.json(tuits));
+            }
 
     /**
      * @param {Request} req Represents request from client, including path
