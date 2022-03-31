@@ -25,7 +25,7 @@ import AuthenticationController from './controller/auth-controller';
  const app = express();
  app.use(cors({
     credentials: true,
-    origin: ['https://localhost:3000','https://assignment4--preeminent-axolotl-9218d0.netlify.app']
+    origin: ['https://localhost:3000','https://preeminent-axolotl-9218d0.netlify.app']
 }));
 
  mongoose.connect(connectionString);
