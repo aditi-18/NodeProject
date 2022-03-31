@@ -41,7 +41,7 @@ import AuthenticationController from './controller/auth-controller';
      }
  }
  
- if (process.env.ENVIRONMENT === 'PRODUCTION') {
+ if (process.env.ENVIRONMENT === 'DEV') {
      app.set('trust proxy', 1) // trust first proxy
      sess.cookie.secure = true // serve secure cookies
  }
