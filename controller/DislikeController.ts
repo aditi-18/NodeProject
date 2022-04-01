@@ -58,10 +58,14 @@ import TuitDao from "../daos/TuitDao";
         const profile = req.session['profile'];
         const userId = uid === "me" && profile ?
             profile._id : uid;
-
-        DislikeController.dislikeDao.findUserDislikedTuit(userId,tid)
-            .then(dislike => res.json(dislike));
             
+            DislikeController.dislikeDao.findAllTuitsDislikedByUser(userId)
+            .then(dislikes => {
+                
+                const dislikesNonNullTuits = dislikes.filter(dislike => dislike.tuit);
+                const tuitsFromDislikes = dislikesNonNullTuits.map(dislike => dislike.tuit);
+                res.json(tuitsFromDislikes);
+            });
     }
     
 
