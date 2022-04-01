@@ -5,8 +5,7 @@
   import Dislike from "../models/Dislike";
   
   /**
-   * @typedef Dislike Represents dislikes relationship between a user and a tuit,
-   * as in a user likes a tuit
+   * @typedef Dislike Represents dislikes relationship when a user dislikes a tuit
    * @property {Tuit} tuit Tuit being liked
    * @property {User} dislikedBy User liking the tuit
    */

@@ -1,13 +1,12 @@
 /**
- * @file Declares Dislike data type representing relationship between
- * users and tuits, as in user likes a tuit
+ * @file  Dislike data type representing relationship whenn
+ as in user dislikes a tuit
  */
  import Tuit from "./Tuit";
  import User from "./User";
  
  /**
-  * @typedef Like Represents dislikes relationship between a user and a tuit,
-  * as in a user likes a tuit
+  * @typedef Like Represents dislikes relationship between when a user dislikes a tuit
   * @property {Tuit} tuit Tuit being liked
   * @property {User} disLikedBy User disliking the tuit
   */

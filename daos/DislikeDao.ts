@@ -1,5 +1,5 @@
 /**
- * @file Implements DAO managing data storage of dislikes. Uses mongoose DislikeModel
+ * @file Implements DAO for dislikes. Uses mongoose DislikeModel
  * to integrate with MongoDB
  */
 
@@ -24,7 +24,6 @@
      private constructor() {}
  
      
- 
      /**
        * Create a dislike instance
        * @param uid Represents id of the user
@@ -52,7 +51,7 @@
          DislikeModel.findOne({tuit: tid, dislikedBy: uid});
  
      /**
-       * Counts how many users disliked a particular tuit.
+       * Counts of users that disliked a particular tuit.
        * @param tid Represents id of the tuit
        */
  
