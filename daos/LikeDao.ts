@@ -1,12 +1,11 @@
 /**
-* @file Implements DAO managing data storage of likes. Uses mongoose LikeModel
-* to integrate with MongoDB
+* @file Implements DAO managing data storage of likes. Uses mongoose LikeModel.
 */
 
 import Follows from "../models/Follows"; import LikeDaoI from "../interfaces/LikeDaoI";
 import LikeModel from "../mongoose/LikeModel";
 import Like from "../models/Like";
-import { StringLiteralLike } from "typescript";
+
 
 /**
  * @class LikeDao Implements Data Access Object managing data storage
@@ -17,7 +16,7 @@ export default class LikeDao implements LikeDaoI {
     private static likeDao: LikeDao | null = null;
 
     /**
-    * Creates singleton DAO instance
+    * Singleton DAO instance
     * @returns LikeDao.
     */
     public static getInstance = (): LikeDao => {
@@ -29,10 +28,10 @@ export default class LikeDao implements LikeDaoI {
     private constructor() { }
 
     /**
-    * Uses LikeModel to retrieve all users that is liked by tuit.
+    * Retrieve all users that is liked by tuit using LikeModel.
     * @param {string} tid is primary key of tuit.
-    * @returns Promise To be notified when the tuits are retrieved from
-    * database and populates the likedby field.
+    * @returns Promise to be notified when the tuits are retrieved from
+    * database and likedby filed is populated.
     */
     findAllUsersThatLikedTuit = async (tid: string): Promise<Like[]> =>
         LikeModel
@@ -41,10 +40,10 @@ export default class LikeDao implements LikeDaoI {
             .exec();
 
     /**
-    * Uses LikeModel to retrieve all tuits that is liked by user.
-    * @param {string} uid is primary key of user.
-    * @returns Promise To be notified when the uis are retrieved from
-    * database and populates the likedby field.
+    * Retrieve all tuits liked by user using UserModel.
+    * @param {string} uid as primary key of user.
+    * @returns Promise to be notified when tuits are retrieved from
+    * database and likedby field is populated.
     */
     findAllTuitsLikedByUser = async (uid: string): Promise<Like[]> =>
         LikeModel
@@ -52,33 +51,36 @@ export default class LikeDao implements LikeDaoI {
             .populate("tuit")
             .exec();
     /**
-    * Inserts like instance into the database
-    * @param {string} uid is primary key of user.
-    * @param {string} tid is primary key of tuit.
-    * @returns Promise To be notified when like is inserted into the database along with likedby field.
+    * Insert like instance into the database
+    * @param {string} uid as primary key of user.
+    * @param {string} tid as primary key of tuit.
+    * @returns Promise to be notified when like is inserted into the database along with likedby field.
     */
     userLikesTuit = async (uid: string, tid: string): Promise<any> =>
         LikeModel.create({ tuit: tid, likedBy: uid });
+
     /**
-    * Deletes  like instance from the database
+    * Delete like  from the database
     * @param {string} uid is primary key of user.
     * @param {string} tid is primary key of tuit.
-    * @returns Promise To be notified when like is deleted from the database along with likedby field.
+    * @returns Promise to be notified when like is deleted from the database along with likedby field.
     */
     userUnlikesTuit = async (uid: string, tid: string): Promise<any> =>
         LikeModel.deleteOne({ tuit: tid, likedBy: uid });
+
+
     /**
-      * If a user has liked a particular tuit
-      * @param uid Represents id of the user
-      * @param tid Represents id of the tuit
+      * Checking if user has liked a tuit.
+      * @param uid id of the user
+      * @param tid id of the tuit
       */
 
      findUserLikesTuit = async (uid: string, tid: string): Promise<any> =>
      LikeModel.findOne({tuit: tid, likedBy: uid});
 
  /**
-   * Counts how many users liked a particular tuit.
-   * @param tid Represents id of the tuit
+   * Counts of users that liked a tuit.
+   * @param tid id of the tuit
    */
 
  countHowManyLikedTuit = async (tid: string): Promise<any> =>

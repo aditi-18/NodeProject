@@ -31,10 +31,10 @@ export default class FollowDao implements FollowDaoI {
 
 
     /**
-    * Uses FollowModel to retrieve all users that are following  them.
+    * FollowModel used to retrieve all users that are following.
     * @param {string} uid is primary key of user.
-    * @returns Promise To be notified when the follow are retrieved from
-    * database and populates the followed by filed.
+    * @returns Promise to be notified when the follow are retrieved from
+    * database followed field is populated.
     */
     findAllFollowedUser = async (uid: string): Promise<Follows[]> =>
         FollowModel.find({ followedBy: uid })
@@ -42,10 +42,10 @@ export default class FollowDao implements FollowDaoI {
 
 
     /**
-    * Uses FollowModel to retrieve all users they are following .
+    *  FollowModel used  to retrieve all users they are following .
     * @param {string} uid is primary key of user.
-    * @returns Promise To be notified when the follow are retrieved from
-    * database and populates the following filed.
+    * @returns Promise to be notified when the follow are retrieved from
+    * database following field is populated.
     */
     findallFollowing = async (uid: string): Promise<Follows[]> =>
         FollowModel.find({ following: uid })
