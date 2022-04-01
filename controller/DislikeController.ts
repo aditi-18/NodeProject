@@ -45,10 +45,10 @@ import TuitDao from "../daos/TuitDao";
  
      
      /**
-      * Finnd if user already disliked a tuit
-      * @param {Request} req Represents request from client, including the path
+      * Tuit disliked by user
+      * @param {Request} req Represents request from client, path
       * parameter uid representing the user liked the tuits
-      * @param {Response} res Represents response to client, including the
+      * @param {Response} res Represents response to client,
       * body formatted as JSON arrays containing the tuit objects that were liked
       */
       findAllTuitsDislikedByUser = (req: Request, res: Response) => {
@@ -66,7 +66,7 @@ import TuitDao from "../daos/TuitDao";
     
 
     /**
-     * @param {Request} req Represents request from client, including the
+     * @param {Request} req Represents request from client, 
      * path parameters uid and tid representing the user that is liking the tuit
      * and the tuit being liked
      * @param {Response} res Represents response to client, including the

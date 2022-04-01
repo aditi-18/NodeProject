@@ -43,7 +43,7 @@
          DislikeModel.deleteOne({tuit: tid, dislikedBy: uid});
  
      /**
-       * If a user has disliked a particular tuit
+       * Check of a users who have disliked a particular tuit
        * @param uid Represents id of the user
        * @param tid Represents id of the tuit
        */
