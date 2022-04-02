@@ -5,6 +5,8 @@
 import DislikeDao from "../daos/DislikeDao";
 import DislikeControllerI from "../interfaces/DislikeControllerI";
 import TuitDao from "../daos/TuitDao";
+import LikeDao from "../daos/LikeDao";
+import LikeControllerI from "../interfaces/LikeControllerI";
 
  
  /**
@@ -35,6 +37,7 @@ import TuitDao from "../daos/TuitDao";
      public static getInstance = (app: Express): DislikeController => {
          if(DislikeController.dislikeController === null) {
             DislikeController.dislikeController = new DislikeController();
+            app.get("/api/tuits/:tid/dislikes", DislikeController.dislikeController.findAllUsersThatDislikedTuit);
              app.get("/api/users/:uid/dislikes/:tid", DislikeController.dislikeController.findAllTuitsDislikedByUser);
              app.put("/api/users/:uid/dislikes/:tid", DislikeController.dislikeController.userTogglesTuitDislikes);
          }
@@ -42,6 +45,11 @@ import TuitDao from "../daos/TuitDao";
      }
  
      private constructor() {}
+
+     findAllUsersThatDislikedTuit = (req: Request, res: Response) =>
+         DislikeController.dislikeDao.findAllUsersThatDislikedTuit(req.params.tid)
+             .then(dislikes => res.json(dislikes));
+ 
  
      
      /**
@@ -58,7 +66,7 @@ import TuitDao from "../daos/TuitDao";
         const profile = req.session['profile'];
         const userId = uid === "me" && profile ?
             profile._id : uid;
-            
+
             DislikeController.dislikeDao.findAllTuitsDislikedByUser(userId)
             .then(dislikes => {
                 
