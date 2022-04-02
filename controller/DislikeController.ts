@@ -38,7 +38,7 @@ import LikeControllerI from "../interfaces/LikeControllerI";
          if(DislikeController.dislikeController === null) {
             DislikeController.dislikeController = new DislikeController();
             app.get("/api/tuits/:tid/dislikes", DislikeController.dislikeController.findAllUsersThatDislikedTuit);
-             app.get("/api/users/:uid/dislikes/:tid", DislikeController.dislikeController.findAllTuitsDislikedByUser);
+             app.get("/api/users/:uid/dislikes", DislikeController.dislikeController.findAllTuitsDislikedByUser);
              app.put("/api/users/:uid/dislikes/:tid", DislikeController.dislikeController.userTogglesTuitDislikes);
          }
          return DislikeController.dislikeController;
