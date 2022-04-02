@@ -57,4 +57,35 @@
  
      countHowManyDislikedTuit = async (tid: string): Promise<any> =>
          DislikeModel.count({tuit: tid});
+
+       /**
+        * Users that disliked a tuit 
+        * @param tid  id of the tuit
+        */
+
+        findAllUsersThatDislikedTuit = async (tid: string): Promise<Dislike[]> =>
+        DislikeModel
+            .find({tuit: tid})
+            .populate("dislikedBy")
+            .exec();
+  
+        /**
+          * All tuits disliked by a user 
+          * @param uid  id of the user
+          */
+  
+         findAllTuitsDislikedByUser = async (uid: string): Promise<Dislike[]> =>
+         DislikeModel
+             .find({dislikedBy: uid})
+             .populate({
+                 path: "tuit",         
+                 populate: {
+                     path: "postedBy" 
+                 }
+             })
+             .exec();
+             findUserDislikesTuit = async (uid: string, tid: string): Promise<any> =>
+        DislikeModel.findOne({tuit: tid, dislikedBy: uid});
+  
+   
  }

@@ -5,6 +5,8 @@
 import DislikeDao from "../daos/DislikeDao";
 import DislikeControllerI from "../interfaces/DislikeControllerI";
 import TuitDao from "../daos/TuitDao";
+import LikeDao from "../daos/LikeDao";
+import LikeControllerI from "../interfaces/LikeControllerI";
 
  
  /**
@@ -35,14 +37,19 @@ import TuitDao from "../daos/TuitDao";
      public static getInstance = (app: Express): DislikeController => {
          if(DislikeController.dislikeController === null) {
             DislikeController.dislikeController = new DislikeController();
-             app.get("/api/users/:uid/dislikes/:tid", DislikeController.dislikeController.findAllTuitsDislikedByUser);
+            app.get("/api/tuits/:tid/dislikes", DislikeController.dislikeController.findAllUsersThatDislikedTuit);
+             app.get("/api/users/:uid/dislikes", DislikeController.dislikeController.findAllTuitsDislikedByUser);
              app.put("/api/users/:uid/dislikes/:tid", DislikeController.dislikeController.userTogglesTuitDislikes);
          }
          return DislikeController.dislikeController;
      }
  
      private constructor() {}
- 
+
+     findAllUsersThatDislikedTuit = (req: Request, res: Response) =>
+         DislikeController.dislikeDao.findAllUsersThatDislikedTuit(req.params.tid)
+             .then(dislikes => res.json(dislikes));
+
      
      /**
       * Tuit disliked by user
@@ -59,9 +66,13 @@ import TuitDao from "../daos/TuitDao";
         const userId = uid === "me" && profile ?
             profile._id : uid;
 
-        DislikeController.dislikeDao.findUserDislikedTuit(userId,tid)
-            .then(dislike => res.json(dislike));
-            
+            DislikeController.dislikeDao.findAllTuitsDislikedByUser(userId)
+            .then(dislikes => {
+                
+                const dislikesNonNullTuits = dislikes.filter(dislike => dislike.tuit);
+                const tuitsFromDislikes = dislikesNonNullTuits.map(dislike => dislike.tuit);
+                res.json(tuitsFromDislikes);
+            });
     }
     
 
