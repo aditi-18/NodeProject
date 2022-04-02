@@ -49,8 +49,7 @@ import LikeControllerI from "../interfaces/LikeControllerI";
      findAllUsersThatDislikedTuit = (req: Request, res: Response) =>
          DislikeController.dislikeDao.findAllUsersThatDislikedTuit(req.params.tid)
              .then(dislikes => res.json(dislikes));
- 
- 
+
      
      /**
       * Tuit disliked by user
